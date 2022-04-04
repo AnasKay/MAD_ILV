@@ -21,7 +21,7 @@ fun myNavigation(){
             )
         ){ backstackentry ->
             val movieId = backstackentry.arguments?.getString("movieId")
-            DetailHeader(movieId = movieId)
+            DetailHeader(movieId = movieId, navController)
         }
     }
 
