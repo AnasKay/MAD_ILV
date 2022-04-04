@@ -3,6 +3,7 @@ package kambal.fhcampuswien.ac.at
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import coil.compose.rememberImagePainter
+import coil.transform.CircleCropTransformation
 import com.example.testapp.models.Movie
 import com.example.testapp.models.getMovies
 
@@ -53,7 +56,17 @@ fun MovieRow(movie: Movie, myFunction: (String) -> Unit = {} ) {
                     .padding(12.dp),
                 elevation = 6.dp
             ) {
-                Icon(imageVector = Icons.Default.AccountBox, contentDescription = "movie pic")
+                //Icon(imageVector = Icons.Default.AccountBox, contentDescription = "movie pic")
+                Image(
+                    painter = rememberImagePainter(
+                        data = movie.images[0],
+                        builder = {
+                            transformations(CircleCropTransformation())
+                        }
+                        ),
+                    contentDescription = "movie poster",
+                    //modifier = Modifier.size(128.dp)
+                )
             }
             Column() {
                 /*Text(fontWeight = FontWeight.Bold,
