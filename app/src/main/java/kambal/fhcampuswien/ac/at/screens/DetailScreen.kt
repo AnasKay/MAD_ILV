@@ -8,10 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -36,18 +33,18 @@ fun DetailHeader(movieId: String?, navController: NavController){
                     
                     Spacer(modifier = Modifier.width(20.dp))
                     val movie = filterMovie(movieId)
-                    Text(text = "${movie.title}")
+                    Text(text = movie.title)
                     
                 }
             }
         }
     ) {
-        detailContent(movieId)
+        DetailContent(movieId)
     }
 }
 
 @Composable
-fun detailContent(movieId: String?) {
+fun DetailContent(movieId: String?) {
     val movie = filterMovie(movieId)
     //Text(text = "Hello $movieId")
 
@@ -58,8 +55,8 @@ fun detailContent(movieId: String?) {
             MovieRow(movie = movie)
             Spacer(modifier = Modifier.height(10.dp))
             Divider()
-            Text(text = "${movie.title}")
-            movieImages(movie)
+            Text(text = movie.title)
+            MovieImages(movie)
         }
 
     }
@@ -67,7 +64,7 @@ fun detailContent(movieId: String?) {
 }
 
 @Composable
-fun movieImages(movie: Movie = getMovies()[0]){
+fun MovieImages(movie: Movie = getMovies()[0]){
     LazyRow{
         items(movie.images){ image ->
 
